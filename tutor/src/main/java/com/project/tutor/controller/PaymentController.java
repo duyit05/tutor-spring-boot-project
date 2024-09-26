@@ -1,10 +1,13 @@
 package com.project.tutor.controller;
 
+import com.project.tutor.dto.PaymentResDTO;
 import com.project.tutor.request.PaymentRequest;
 import com.project.tutor.respone.ResponeDataAuth;
 import com.project.tutor.respone.ResponseData;
 import com.project.tutor.service.PaymentService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -45,5 +48,11 @@ public class PaymentController {
         data.setData(checkUpdatePayment ? true : false);
         data.setMsg(checkUpdatePayment ? "Update payment success" : "Update payment fail!");
         return new ResponseEntity<>(data , HttpStatus.OK);
+    }
+
+    @PostMapping("/create-payment")
+    public ResponseEntity<?> createPayment (HttpServletRequest req, @RequestBody PaymentRequest paymentRequest){
+        PaymentResDTO payment = paymentService.createPayment(paymentRequest , req);
+        return new ResponseEntity<>(payment , HttpStatus.OK);
     }
 }

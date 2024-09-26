@@ -1,7 +1,9 @@
 package com.project.tutor.service;
 
 import com.project.tutor.dto.PaymentDTO;
+import com.project.tutor.dto.PaymentResDTO;
 import com.project.tutor.request.PaymentRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,4 +16,7 @@ public interface PaymentService {
   public boolean deletePayment (int paymentId);
 
   public PaymentDTO getPaymentById (int paymentId);
+
+  public PaymentResDTO createPayment(PaymentRequest request , HttpServletRequest req);
+
 }
